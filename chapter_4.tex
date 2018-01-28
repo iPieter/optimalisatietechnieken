@@ -9,19 +9,56 @@ Constructieve heuristieken bouwen een oplossing op en de groep van perturbatieve
 Een modellering dient om een oplossing voor te stellen, waarbij deze aan de volgende voorwaarden moet voldoen:
 
 \begin{itemize}
-    \item Zo eenvoudig mogelijk
-    \item Snel en eenvoudig te manipuleren
-    \item Snel een eenvoudig te evalueren
+    \item Volledigheid: alle mogelijke oplossingen kunnen voorgesteld worden in de modellering
+    \item Connectiviteit: er bestaat een (indirect) pad tussen 2 oplossingen
+    \item Effici\"entie: snel een eenvoudig te manipuleren en evalueren
 \end{itemize}
 
 \paragraph{Binaire codering}
+Deze codering houdt voor ieder object een eigenschap bij. 
+Bijvoorbeeld in geval van het knapzakprobleem, waarbij 0 voorstelt dat het item niet in de knapzak zit en 1 wel.
+%
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    1 & 0 & 0 & 1 & 1 & 1 & 0 \\ \hline
+    \end{tabular}
+\end{table}
+%
 \paragraph{Geheeltallige codering}
+Deze codering kan meerdere eigenschappen toekennen aan een enkel object dan de binaire codering, wat voor toekennings- en locatieproblemen nuttig is.
+
+Deze codering kan ook gebruikt worden om permutatie- en volgordeproblemen te weerspiegelen.
+Hierbij kunnen nummers uiteraard geen twee keer voorkomen, tenzij de probleemstelling dat toelaat.
+%
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    4 & 7 & 8 & 1 & 2 & 6 & 5 \\ \hline
+    \end{tabular}
+\end{table}
+%
+
 \paragraph{Floating-point voorstelling}
+Voor continue optimalisatieproblemen kan een voorstelling met zwevende komma's gebruikt worden.
+Toepassingen zijn bijvoorbeeld het bepalen van samenstellingen of het optimaliseren vna parameters.
+
+%
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    2.5 & 0.8 & 10.3 & 1.0 & 2.3 & 4.6 & 0.1 \\ \hline
+    \end{tabular}
+\end{table}
+%
 \paragraph{Niet-lineaire voorstelling}
+Mocht gekozen worden voor een niet-lineaire voorstelling van de oplossing, is dit in veel gevallen een graaf- of boomstructuur. 
 
 \subsection{Directe en indirecte voorstelling}
-
-
+Bij de modellering kan er gekozen worden om met een \emph{directe} voorstelling te werken, waarbij alle informatie direct beschikbaar is. Indien dit niet het geval is, en er dus een decoder nodig is om de oplossing te interpreteren, wordt gesproken van een \emph{indirecte} voorstelling.
 
 \section{Lokale zoekmethoden}
 
