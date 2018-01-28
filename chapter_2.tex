@@ -1,9 +1,15 @@
 \chapter{Dynamisch programmeren}
 Dynamisch programmeren is in essentie ver doorgedreven recursie, waarbij een probleem wordt opgesplitst in kleinere deelproblemen.
 Deze problemen kunnen dan onafhankelijk opgelost worden.
+
+\section{Knapzakprobleem}
 Een voorbeeld is het knapzakprobleem, waarvan het algoritme bescheven staat in algoritme~\ref{algo:Knapzak}.
 
+Wat dit algoritme in essentie doet is eerst het probleem oplossen voor 1 item, daarna voor 2 etc. 
+Per iteratie van item $j$ wordt bekeken of het positief is om dit item $j$ toe te voegen aan de gekende beste oplossing voor grootte $i - size[j]$.
 
+Hierin zijn dus de elementen van dynamisch programmeren te herkennen: het probleem wordt gereduceerd tot een belachelijk simpel probleem met \"e\"en item en kleine knapzak.
+Deze eenvoudige oplossing wordt dan gebruikt om de moeilijke problemen op te lossen, waarbij het dus belangrijk is om in te zien dat er wordt verder gebouwd op deze oplossing.
 
 %%%%%%%%%%%%%%%%%%
 % Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
@@ -27,3 +33,4 @@ Een voorbeeld is het knapzakprobleem, waarvan het algoritme bescheven staat in a
         \EndFor
     \end{algorithmic}
 \end{algorithm}
+
