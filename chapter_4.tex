@@ -161,3 +161,33 @@ Dit is een deterministische variant op simulated annealing, waarbij de acceptati
 Hierbij wordt de drempel $Q$ aangepast in functie van de historiek: bij een recent geaccepteerde slechtere oplossing zal de drempel lichtjes verhoogd worden en verlaagd bij het aanvaarden van een betere oplossing. Hiervoor wordt de leeftijd (aantal iteraties sinds laatste aanvaardde oplossing) bijgehouden.
 
 \subsection{Tabu search}
+
+%%%%%%%%%%%%%%%%%%
+% Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
+%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+    \caption{Pseudocode voor tabu search.}
+    \label{algo:TabuSearch}
+    \begin{algorithmic} 
+    \Require $s_0$: Initial solution
+    \Function{SimulatedAnnealing}{$s_0$}
+        \State $best \gets s_0$
+        \State{Initialize tabu list, intermediate and long term memory}
+        \Repeat 
+            \State{$s \gets $ best allowed solution in neighbourhood}
+            \If{$f(s) < f(best)$}
+                \State{$s \gets best$}
+            \EndIf
+            \State{Update tabu list, aspiratation conditions, and memory}
+            \State{...}
+        \Until{stopping condition}
+        \State \Return $s$ 
+    \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\paragraph{Kortetermijngeheugen}
+Het kortetermijngeheugen houdt een lijst bij van bezochte oplossingen om lussen te vermijden. 
+Alle oplossingen bijhouden neemt echter teveel ruimte en rekentijd in beslag, dus kan de lengte van deze \emph{tabu-lijst} beperkt worden. 
+Een alternatief is om \emph{hashes} op te slaan of kenmerken van de \emph{moves}, waarbij de inverse move verboden wordt.
+
