@@ -92,9 +92,49 @@ Deze strategie heeft als nadeel dat deze snel vast komt te zitten in een lokaal 
 \paragraph{Hill climbing}
 Hier wordt niet de beste, maar eerste verbetering uit een omgeving aanvaard, wat uitaard dezelfde nadelen heeft als steepest descent.
 
+\TODO delta-evaluatie
+
 \section{Metaheuristieken}
 Een metaheuristiek is een methode die een probleem optimaliseert door iteratief te proberen een kandidaatoplossing te verbeteren met betrekking tot een gegeven kwaliteitsmaat. 
 Metaheuristieken zijn niet probleemspecifiek. 
 Ze zijn in staat om grote ruimten met kandidaatoplossingen te doorzoeken, maar bieden geen garantie op het vinden van een optimale oplossing.
 
-\TODO delta-evaluatie
+\subsection{Simulated annealing}
+Simulated annealing behoort tot de groep van \emph{drempelalgoritmen}, waarbij een slechtere oplossing soms aanvaard wordt op basis van een \emph{threshold}. 
+
+Dit wordt gerealiseerd door de oplossing te beschouwen als een kristallijne smelt, die langzaam afkoelt. 
+De temperatuur $T$ is staat voor de energie en heeft een invloed op de acceptatie-functie.
+
+%%%%%%%%%%%%%%%%%%
+% Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
+%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+    \caption{Pseudocode voor simulated annealing.}
+    \label{algo:kmeans}
+    \begin{algorithmic} 
+    \Require $s_0$: Initial solution
+    \Require $T_0$: Initial temperature
+    \Require $T_{min}$: Temperature of stopping condition
+    \Function{SimulatedAnnealing}{$s_0$, $T_0$, $T_{min}$}
+        \State $s \gets s_0$
+        \State $T \gets T_0$
+        \Repeat 
+            \Repeat 
+                \State{$s' \gets$ random neighbour} 
+                \State{$\Delta E \gets f(s') - f(s)$}
+                \State{$r \gets$ random number between 0 and 1}
+                \If{$\Delta E \leq 0$ \Or $r < e^{ \frac{- \Delta E}{T}} $}
+                    \State{$s \gets s'$}
+                \EndIf
+        \Until{$T < T_{min}$} \Comment{Equilibrium condition}
+        \State{$T = g(T)$} \Comment{Cooling scheme}
+        \Until{$T < T_{min}$} \Comment{Stopping condition}
+        \State \Return $C$ 
+    \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\paragraph{Acceptatiefunctie}
+
+
+\subsection{Tabu search}
