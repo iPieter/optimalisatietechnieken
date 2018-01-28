@@ -1,1 +1,29 @@
 \chapter{Dynamisch programmeren}
+Dynamisch programmeren is in essentie ver doorgedreven recursie, waarbij een probleem wordt opgesplitst in kleinere deelproblemen.
+Deze problemen kunnen dan onafhankelijk opgelost worden.
+Een voorbeeld is het knapzakprobleem, waarvan het algoritme bescheven staat in algoritme~\ref{algo:Knapzak}.
+
+
+
+%%%%%%%%%%%%%%%%%%
+% Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
+%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+    \caption{Pseudocode van een oplossing voor het knapzakprobleem.}
+    \label{algo:Knapzak}
+    \begin{algorithmic}
+        \Require{$cost[M]$}
+        \Require{$size[N]$}
+        \Require{$val[N]$}
+        \ForAll{$j$ in $1$ to $N$ inclusive} \Comment{Iterate objects}
+            \ForAll{$i$ in $1$ to $M$ inclusive} \Comment{Iterate volumes}
+                \If{$i \geq size[j]$}
+                    \If{$cost[i] \leq cost[i - size[j]] + val[j]$}
+                        \State{$cost[i] \gets cost[i - size[j]] + val[j]$}
+                        \State{$best[i] \gets = j$}
+                    \EndIf
+                \EndIf
+            \EndFor    
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
