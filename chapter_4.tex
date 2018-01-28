@@ -110,7 +110,7 @@ De temperatuur $T$ is staat voor de energie en heeft een invloed op de acceptati
 %%%%%%%%%%%%%%%%%%
 \begin{algorithm}
     \caption{Pseudocode voor simulated annealing.}
-    \label{algo:kmeans}
+    \label{algo:SimulatedAnnealing}
     \begin{algorithmic} 
     \Require $s_0$: Initial solution
     \Require $T_0$: Initial temperature
@@ -129,12 +129,35 @@ De temperatuur $T$ is staat voor de energie en heeft een invloed op de acceptati
         \Until{$T < T_{min}$} \Comment{Equilibrium condition}
         \State{$T = g(T)$} \Comment{Cooling scheme}
         \Until{$T < T_{min}$} \Comment{Stopping condition}
-        \State \Return $C$ 
+        \State \Return $s$ 
     \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
 \paragraph{Acceptatiefunctie}
+De waarschijnlijkheid om een slechtere oplossing te aanvaarden zal afnemen in functie van de temperatuur $T$. 
+In lijn met de koeling-analogie, is de acceptatiefunctie de Maxwell-Boltzmannverdeling waarbij een willekeurig getal $r$ tussen 0 en 1 groter zal moeten zijn.
 
+\begin{equation}
+    r < e^{ \frac{- \Delta E}{T}}
+\end{equation}
+
+\paragraph{Koeling}
+In algoritme~\ref{algo:SimulatedAnnealing} is de koelingstrategie $T \gets g(T)$ open gelaten, aangezien er verschillende strategi\"en bestaan. 
+Enkele voorbeelden:
+
+\begin{enumerate}
+    \item \textbf{Lineair}: $T_i = T_0 - i \cdot \beta$ met $i$ het aantal iteraties
+    \item \textbf{Geometrisch}: $T = \alpha \cdot T$ met $\alpha$ vaak tussen 0,5 en 0,99.
+    \item \textbf{Logaritmisch}: $T_i = \frac{T_0}{\log(i)}$ Dit is in de praktijk onbruikbaar traag.
+    \item \textbf{Niet-monotoon}: hierbij wordt er aan \emph{reheating} gedaan, waarbij de temperatuur $T$ terug stijgt.
+\end{enumerate}
+
+
+\paragraph{Threshold accepting}
+Dit is een deterministische variant op simulated annealing, waarbij de acceptatiefunctie vervangen wordt door een iteratie-afhankelijke drempelwaarde $Q$.
+
+\paragraph{Old bachelor}
+Hierbij wordt de drempel $Q$ aangepast in functie van de historiek: bij een recent geaccepteerde slechtere oplossing zal de drempel lichtjes verhoogd worden en verlaagd bij het aanvaarden van een betere oplossing. Hiervoor wordt de leeftijd (aantal iteraties sinds laatste aanvaardde oplossing) bijgehouden.
 
 \subsection{Tabu search}
