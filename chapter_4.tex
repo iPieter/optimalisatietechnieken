@@ -68,6 +68,7 @@ Deze algoritmen bestaan dus altijd uit twee stappen:
 \begin{enumerate}
     \item Stap 1: construeer een initi\"ele oplossing.
     \item Stap 2: vervang de huidige oplossing door een betere buur.
+    \item Stap 3: stoppen.
 \end{enumerate}
 %
 
@@ -75,5 +76,20 @@ Het bepalen van een valide initi\"ele oplossing kan op verschillende manieren ge
 Zo kan er vertrokken worden van een al gekende oplossing. 
 Een andere strategie is om met een eenvoudigere heuristiek of zelfs willekeurig een oplossing te genereren.
 
+De tweede stap is het vervangen van een oplossing door een betere uit de \emph{neighbourhood}. 
+De strategie om deze oplossing te kiezen, bepaalt de performantie en het eindelijke resultaat.
+
+Tenslotte moet er ook een stop-voorwaarde voorzien worden. 
+Een eenvoudige voorwaarde is om de uitvoertijd te beperken, wat als nadeel heeft dat de oplossing mogelijks niet lokaal optimaal is.
+Dit kan beter---maar ook niet gegarandeerd---bereikt worden door een timer te starten na de laatste verbetering.
+Door een vast aantal iteraties te gebruiken in plaats van een timer, is dit wel mogelijk; dat aantal is echter afhankelijk van de probleemgrootte. 
+Daarnaast hebben beide strategi\"en als nadeel dat ze minder duidelijk zijn naar de gebruiker toe. 
+
+\paragraph{Steepest descent}
+Hierbij wordt uit een omgeving de beste verbetering gekozen. 
+Deze strategie heeft als nadeel dat deze snel vast komt te zitten in een lokaal optimum. Een voordeel is wel dat de stop-voorwaarde duidelijk is: wanneer er geen betere buren meer zijn. Daarnaast convergeert deze heuristiek ook snel, wat wilt zeggen dat het lokale optimum snel bereikt wordt.
+
+\paragraph{Hill climbing}
+Hier wordt niet de beste, maar eerste verbetering uit een omgeving aanvaard, wat uitaard dezelfde nadelen heeft als steepest descent.
 
 \section{Metaheuristieken}
