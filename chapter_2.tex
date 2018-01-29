@@ -34,3 +34,33 @@ Deze eenvoudige oplossing wordt dan gebruikt om de moeilijke problemen op te los
     \end{algorithmic}
 \end{algorithm}
 
+\section{Matrix chain product}
+Een tweede voorbeeld is het \emph{matrix chain product}, waarbij gewerkt wordt met een \emph{bottum-up approach}. 
+Algoritme~\ref{algo:Matrix} wordt beschouwd aan de hand van de matrices in formule~\ref{eq:matrix}.
+
+\begin{equation}
+    M_1 \cdot M_2 \cdot M_3 \cdot \dots \cdot M_N
+    \label{eq:matrix}
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%
+% Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
+%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+    \caption{Pseudocode van een oplossing voor het knapzakprobleem.}
+    \label{algo:Matrix}
+    \begin{algorithmic}
+        \Require{$r[N + 1]$: A list with all dimensions of the matrices}
+        \State{$cost[N][N] \gets$ upper triangular matrix with 0 on diagnal}
+        \ForAll{$j$ in $1$ to $N$ inclusive} \Comment{Iterate length}
+            \ForAll{$i$ in $1$ to $N - j$ inclusive} \Comment{Iterate starting position}
+                \ForAll{$k$ in $i + 1$ to $i + j$ inclusive} \Comment{Iterate split position}
+                    \State{$t \gets cost[i][k-1][cost[k][i+j] 
+                        + r[i] \cdot r[k] \cdot r[i+j+1]$}
+                \EndFor
+            \EndFor    
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
