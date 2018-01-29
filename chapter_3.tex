@@ -6,9 +6,21 @@
 \section{Parti\"ele oplossingen}
 Door---bij een minimalisatieprobleem---gebruik te maken van een globale bovengrens en een ondergrens per knoop, is \emph{branch and bound} in staat om de takken die niet tot een optimale oplossing kunnen leiden te snoeien.
 
-\paragraph{Bovengrens} Er wordt een globale bovengrens $UB$ bijgehouden, die verbetert per gevonden oplossing. 
+\paragraph{Bovengrens} 
+Er wordt een globale bovengrens $UB$ bijgehouden, die verbetert per gevonden oplossing. 
 Initieel is deze grens dus oneindig groot.
 
-\paragraph{Ondergrens} Per knoop wordt een schatting gemaakt van de ondergrens $LB_i$.
+\paragraph{Ondergrens}\label{paragraph:ondergrens}
+Per knoop wordt een schatting gemaakt van de ondergrens $LB_i$.
 Als deze ondergrens groter of gelijk is aan de bovengrens, $LB_i \geq UB$, dienden de kinderen van de node $i$ niet meer bekeken te worden.
 Er is tenslotte geen mogelijkheid meer om een betere waarde te vinden dan de al gekende bovengrens.
+
+\subsection{Heuristische schatting}
+De eerder ge\"introduceerde ondergrenzen zijn vrij ruw, aangezien de ondergrens simpelweg de cumulatieve kost tot en met die knoop is. Op basis van drie waarden is het echter mogelijk een betere schatting te maken, waardoor ook eerder gesnoeid kan worden.
+
+\begin{itemize}
+    \item \textbf{$L_1$}: kost van de parti\"ele oplossing (zoals eerder)
+    \item \textbf{$L_2$}: onderschatting van de volgende bijkomende kost, dus de minimale af te leggen kost vanop een bepaald punt
+    \item \textbf{$L_3$}: onderschatting van de bijkomende kost om een volledige oplossing te bereiken (pro-tip: altijd $1$ \shrug)
+\end{itemize}
+
