@@ -1,3 +1,14 @@
 \chapter{Branch and bound}
 
-\section{In}
+\section{Introductie}
+\emph{Branch and bound} reduceert het aantal oplossingen dat in aanmerking komt door het probleem op te splitsen en suboptimale deeloplossingen te elimineren. 
+
+\section{Parti\"ele oplossingen}
+Door---bij een minimalisatieprobleem---gebruik te maken van een globale bovengrens en een ondergrens per knoop, is \emph{branch and bound} in staat om de takken die niet tot een optimale oplossing kunnen leiden te snoeien.
+
+\paragraph{Bovengrens} Er wordt een globale bovengrens $UB$ bijgehouden, die verbetert per gevonden oplossing. 
+Initieel is deze grens dus oneindig groot.
+
+\paragraph{Ondergrens} Per knoop wordt een schatting gemaakt van de ondergrens $LB_i$.
+Als deze ondergrens groter of gelijk is aan de bovengrens, $LB_i \geq UB$, dienden de kinderen van de node $i$ niet meer bekeken te worden.
+Er is tenslotte geen mogelijkheid meer om een betere waarde te vinden dan de al gekende bovengrens.
