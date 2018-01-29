@@ -39,11 +39,45 @@ Een tweede voorbeeld is het \emph{matrix chain product}, waarbij gewerkt wordt m
 Algoritme~\ref{algo:Matrix} wordt beschouwd aan de hand van de matrices in formule~\ref{eq:matrix}.
 
 \begin{equation}
-    M_1 \cdot M_2 \cdot M_3 \cdot \dots \cdot M_N
+    M_1 \cdot M_2 \cdot M_3 \cdot \ldots \cdot M_N
     \label{eq:matrix}
 \end{equation}
 
+Het algoritme gebruikt een array met de dimensies van de matrices, opgevuld zoals beschreven in tabel~\ref{table:dimensions}.
 
+%
+\begin{table}[!h]
+    \centering
+    \label{table:dimensions}
+    \caption{Inhoud van de array met dimensies, met $r$ het aantal rijen en $c$ het aantal kolommen. }
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    $r_1$ & $c_1$ & $c_2$ & $c_3$ & $\ldots$ & $c_N$ \\ \hline
+    \end{tabular}
+\end{table}
+%
+
+Daarna wordt de kostenmatrix iteratief opgebouwd, waarbij begonnen wordt met de kost van een vermenigvuldiging tussen buren. 
+Dit gebeurt via de parameter $j$, die conceptueel de lengte moet voorstellen. 
+Dit gebeurt voor ieder paar van matrices.
+
+De volgende stap is voor $j = 2$, hierbij wordt de parameter $k$ van belang.
+Deze stelt voor waar de keten gesplitst wordt. 
+Voor iedere matrix---startende vanaf $i$ tot $i + j$---wordt de kost berekend, waarbij de totale kost te berekenen is via: 
+
+\begin{equation}
+    cost[i][i+j] = cost[i][k-1]+cost[k][i+j] + r[i] \cdot r[k] \cdot r[i+j+1]
+\end{equation}
+
+In deze vergelijking zijn drie elementen:
+
+\begin{itemize}
+    \item De kost van de linkerhelft: $cost[i][k-1]$
+    \item De kost van de rechterhelft: $cost[k][i+j]$
+    \item De kost van het middelste product: $r[i] \cdot r[k] \cdot r[i+j+1]$
+\end{itemize}
+
+Deze kost wordt dus voor iedere matrix-keten met lengte $j + 1$ ge\"evalueerd, waarbij de volgende iteratie verder kan bouwen op deze waarden. 
 
 %%%%%%%%%%%%%%%%%%
 % Indien dit gekopieerd wordt, zie: https://en.wikibooks.org/wiki/LaTeX/Algorithms
@@ -53,12 +87,16 @@ Algoritme~\ref{algo:Matrix} wordt beschouwd aan de hand van de matrices in formu
     \label{algo:Matrix}
     \begin{algorithmic}
         \Require{$r[N + 1]$: A list with all dimensions of the matrices}
-        \State{$cost[N][N] \gets$ upper triangular matrix with 0 on diagnal}
+        \State{$cost[N][N] \gets$ upper triangular matrix with $0$ on diagnal}
         \ForAll{$j$ in $1$ to $N$ inclusive} \Comment{Iterate length}
             \ForAll{$i$ in $1$ to $N - j$ inclusive} \Comment{Iterate starting position}
                 \ForAll{$k$ in $i + 1$ to $i + j$ inclusive} \Comment{Iterate split position}
-                    \State{$t \gets cost[i][k-1][cost[k][i+j] 
+                    \State{$t \gets cost[i][k-1]+cost[k][i+j] 
                         + r[i] \cdot r[k] \cdot r[i+j+1]$}
+                    \If{$t < cost[i][i+j] $}
+                        \State{$cost[i][i+j] \gets t$}
+                        \State{$best[i][i+j] \gets k$}
+                    \EndIf
                 \EndFor
             \EndFor    
         \EndFor
