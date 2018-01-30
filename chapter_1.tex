@@ -1,1 +1,38 @@
 \chapter{Lineair en geheeltallig programmeren}
+
+\section{Introductie}
+Lineair programmeren houdt in om een probleem te formuleren in termen van een \emph{doelfunctie} en \emph{beperkingen} in functie van de \emph{beslissingsvariabelen}. Bij geheeltallig programmeren komt hier nog een beperking bij, namelijk dat alle beslissingsvariabelen een geheeltallige waarde moeten hebben.
+
+\section{Lineair programmeren}
+Bij lineair programmeren dient een doelfunctie gemaximaliseerd te worden.
+Indien het een minimalisatieprobleem is, worden alle co\"efficienten $b_1, \cdots, c_n$ van teken veranderd.
+
+\begin{equation}
+    \max{\sum_{i=1}^{n}{c_{i}x_i}}
+\end{equation}
+
+De beperkingen worden ook vaak in standaardvorm gezet, waarbij de rechterleden $b_1, \cdots, b_n$ niet-negatief zijn.
+Ook de beslissingsvariabelen zelf dienen niet-negatief te zijn; indien dit wel het geval is kunnen deze uitgedrukt worden als het verschil van twee niet niet-negatieve variabelen.
+
+\begin{align*} 
+    \sum_{i=1}^{n}{a_{1i}x_i} & \sim  b_1 \\ 
+    \vdots \\
+    \sum_{i=1}^{n}{a_{mi}x_i} & \sim  b_m
+\end{align*}
+
+De tilde $\sim$ in voorgaande vergelijking stelt een gelijkheid of ongelijkheid voor, maar in de standaardvorm wordt gekozen voor gelijkheden. 
+Door extra \emph{slack}-variabelen te introduceren, kunnen ongelijkheden ook voorgesteld worden.
+
+\subsection{Gevoeligheidsanalyse}
+Zodra een optimale oplossing bekend is, kan het nuttig zijn om te weten over welk bereik variabelen kunnen veri\"eren voordat de basis niet meer optimaal is. 
+Voor twee variabelen kan deze analyse grafisch gebeuren.
+
+Ook kan de schaduwprijs bepaald worden, dit is de hoeveelheid toename (voor een maximalisatieprobleem) wanneer het rechterlid van een beperking met 1 toeneemt, voor een bepaalde beperking. Men kan dit berekenen door een beperking te wijzigen naar:
+
+\begin{align*} 
+    \sum_{i=1}^{n}{a_{1i}x_i} & \sim  b_1 \\ 
+    \vdots \\
+    \sum_{i=1}^{n}{a_{ki}x_i} & \sim  b_k + \Delta \\ 
+    \vdots \\
+    \sum_{i=1}^{n}{a_{mi}x_i} & \sim  b_m
+\end{align*}
